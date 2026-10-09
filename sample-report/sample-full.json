@@ -1,0 +1,300 @@
+{
+  "id": "sample-full",
+  "status": "completed",
+  "request": {
+    "url": "http://127.0.0.1:60745/",
+    "mode": "full",
+    "maxPages": 20,
+    "concurrency": 3,
+    "timeoutMs": 5000,
+    "browserChecks": false
+  },
+  "startedAt": "2026-10-09T07:48:18.814Z",
+  "progress": {
+    "phase": "done",
+    "pagesDiscovered": 7,
+    "pagesScanned": 7,
+    "linksChecked": 3,
+    "linksTotal": 3
+  },
+  "pages": [
+    {
+      "url": "http://127.0.0.1:60745/",
+      "source": "start",
+      "linkCount": 5,
+      "imageCount": 3,
+      "ctas": [
+        {
+          "text": "Get started",
+          "href": "http://127.0.0.1:60745/signup",
+          "kind": "link"
+        },
+        {
+          "text": "Buy now",
+          "href": null,
+          "kind": "link"
+        }
+      ],
+      "status": 200,
+      "title": "Fixture Home"
+    },
+    {
+      "url": "http://127.0.0.1:60745/about",
+      "source": "link",
+      "linkCount": 1,
+      "imageCount": 0,
+      "ctas": [],
+      "status": 200,
+      "title": null
+    },
+    {
+      "url": "http://127.0.0.1:60745/missing-page",
+      "source": "link",
+      "linkCount": 0,
+      "imageCount": 0,
+      "ctas": [],
+      "status": 404
+    },
+    {
+      "url": "http://127.0.0.1:60745/signup",
+      "source": "link",
+      "linkCount": 0,
+      "imageCount": 0,
+      "ctas": [
+        {
+          "text": "Join now",
+          "href": null,
+          "kind": "button"
+        }
+      ],
+      "status": 200,
+      "title": "Sign up"
+    },
+    {
+      "url": "http://127.0.0.1:60745/redirect-private",
+      "source": "link",
+      "linkCount": 0,
+      "imageCount": 0,
+      "ctas": [],
+      "status": 0,
+      "error": "Address 169.254.169.254 is private/local and is blocked."
+    },
+    {
+      "url": "http://127.0.0.1:60745/orphan",
+      "source": "sitemap",
+      "linkCount": 0,
+      "imageCount": 0,
+      "ctas": [],
+      "status": 200,
+      "title": "Orphan"
+    },
+    {
+      "url": "http://127.0.0.1:60745/deep",
+      "source": "link",
+      "linkCount": 0,
+      "imageCount": 0,
+      "ctas": [],
+      "status": 200,
+      "title": "Deep"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "category": "images",
+      "severity": "high",
+      "title": "Broken image (HTTP 404)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Image \"Missing\" → http://127.0.0.1:60745/img/missing.png → HTTP 404",
+      "recommendation": "Update the link to a working URL or remove it."
+    },
+    {
+      "id": "F-002",
+      "category": "links",
+      "severity": "high",
+      "title": "Broken link (HTTP 404)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Link \"Broken link\" → http://127.0.0.1:60745/missing-page → HTTP 404",
+      "recommendation": "Update the link to a working URL or remove it."
+    },
+    {
+      "id": "F-003",
+      "category": "accessibility",
+      "severity": "medium",
+      "title": "Missing lang attribute on <html>",
+      "evidence": "<html> has no lang attribute.",
+      "recommendation": "Add lang=\"en\" (or the correct language) so screen readers pick the right voice.",
+      "url": "http://127.0.0.1:60745/about"
+    },
+    {
+      "id": "F-004",
+      "category": "accessibility",
+      "severity": "medium",
+      "title": "1 form field(s) without a label",
+      "evidence": "<input name=\"email\">",
+      "recommendation": "Associate each field with a <label for> or add aria-label. Placeholders are not labels.",
+      "url": "http://127.0.0.1:60745/signup"
+    },
+    {
+      "id": "F-005",
+      "category": "content",
+      "severity": "medium",
+      "title": "Placeholder text (lorem ipsum)",
+      "evidence": "Page contains lorem ipsum filler text.",
+      "recommendation": "Replace placeholder text with real content before launch.",
+      "url": "http://127.0.0.1:60745/about"
+    },
+    {
+      "id": "F-006",
+      "category": "cta",
+      "severity": "medium",
+      "title": "Call-to-action has no destination",
+      "evidence": "\"Buy now\" → href=\"#\"",
+      "recommendation": "Point the CTA at a real URL (e.g. signup or contact page).",
+      "url": "http://127.0.0.1:60745/"
+    },
+    {
+      "id": "F-007",
+      "category": "headings",
+      "severity": "medium",
+      "title": "Missing H1 heading",
+      "evidence": "Found 0 empty/absent <h1> elements.",
+      "recommendation": "Add exactly one descriptive <h1> that states the page topic.",
+      "url": "http://127.0.0.1:60745/about"
+    },
+    {
+      "id": "F-008",
+      "category": "images",
+      "severity": "medium",
+      "title": "1 image(s) missing alt text",
+      "evidence": "<img> without alt attribute: /img/ok.png",
+      "recommendation": "Add descriptive alt text, or alt=\"\" for purely decorative images.",
+      "url": "http://127.0.0.1:60745/"
+    },
+    {
+      "id": "F-009",
+      "category": "security",
+      "severity": "medium",
+      "title": "Link target not checked (blocked by safety policy)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Link \"Internal admin\" → http://10.0.0.5/admin: Address 10.0.0.5 is private/local and is blocked.",
+      "recommendation": "Confirm the target is a public address. The scanner never contacts private/local networks."
+    },
+    {
+      "id": "F-010",
+      "category": "security",
+      "severity": "medium",
+      "title": "Link target not checked (blocked by safety policy)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Link \"Redirecting link\" → http://127.0.0.1:60745/redirect-private: Address 169.254.169.254 is private/local and is blocked.",
+      "recommendation": "Confirm the target is a public address. The scanner never contacts private/local networks."
+    },
+    {
+      "id": "F-011",
+      "category": "seo",
+      "severity": "medium",
+      "title": "Missing meta description",
+      "evidence": "No <meta name=\"description\"> with content found.",
+      "recommendation": "Add a meta description of about 70–160 characters summarising the page.",
+      "url": "http://127.0.0.1:60745/about"
+    },
+    {
+      "id": "F-012",
+      "category": "seo",
+      "severity": "medium",
+      "title": "Missing or empty <title>",
+      "evidence": "No non-empty <title> element found.",
+      "recommendation": "Add a unique, descriptive <title> (about 30–60 characters).",
+      "url": "http://127.0.0.1:60745/about"
+    },
+    {
+      "id": "F-013",
+      "category": "content",
+      "severity": "low",
+      "title": "Likely spelling mistake(s): definately, teh",
+      "evidence": "\"definately\" → \"definitely\"; \"teh\" → \"the\"",
+      "recommendation": "Correct the spelling and run a full proofreading pass (this check only covers a small word list).",
+      "url": "http://127.0.0.1:60745/"
+    },
+    {
+      "id": "F-014",
+      "category": "content",
+      "severity": "low",
+      "title": "Page has very little text",
+      "evidence": "Only 7 word(s) of visible text.",
+      "recommendation": "Confirm the page is not blank or failing to render content.",
+      "url": "http://127.0.0.1:60745/about"
+    },
+    {
+      "id": "F-015",
+      "category": "content",
+      "severity": "low",
+      "title": "Page has very little text",
+      "evidence": "Only 17 word(s) of visible text.",
+      "recommendation": "Confirm the page is not blank or failing to render content.",
+      "url": "http://127.0.0.1:60745/orphan"
+    },
+    {
+      "id": "F-016",
+      "category": "content",
+      "severity": "low",
+      "title": "Page has very little text",
+      "evidence": "Only 16 word(s) of visible text.",
+      "recommendation": "Confirm the page is not blank or failing to render content.",
+      "url": "http://127.0.0.1:60745/signup"
+    }
+  ],
+  "counts": {
+    "total": 16,
+    "bySeverity": {
+      "critical": 0,
+      "high": 2,
+      "medium": 10,
+      "low": 4,
+      "info": 0
+    },
+    "byCategory": {
+      "links": 1,
+      "images": 2,
+      "seo": 2,
+      "headings": 1,
+      "content": 5,
+      "cta": 1,
+      "browser": 0,
+      "responsive": 0,
+      "accessibility": 2,
+      "security": 2
+    }
+  },
+  "notes": [
+    "Browser checks were disabled for this scan; console/page-error and mobile-overflow checks were not run."
+  ],
+  "ai": {
+    "provider": "deterministic",
+    "summary": "Scanned 7 page(s) in full-site mode and recorded 16 finding(s): 2 high, 10 medium, 4 low. Most affected areas: content (5), images (2), accessibility (2). Address the highest-severity items first.",
+    "priorities": [
+      {
+        "findingId": "F-001",
+        "reason": "Update the link to a working URL or remove it."
+      },
+      {
+        "findingId": "F-002",
+        "reason": "Update the link to a working URL or remove it."
+      },
+      {
+        "findingId": "F-003",
+        "reason": "Add lang=\"en\" (or the correct language) so screen readers pick the right voice."
+      },
+      {
+        "findingId": "F-004",
+        "reason": "Associate each field with a <label for> or add aria-label. Placeholders are not labels."
+      },
+      {
+        "findingId": "F-005",
+        "reason": "Replace placeholder text with real content before launch."
+      }
+    ],
+    "disclaimer": "Generated by deterministic rules from the findings list (no AI model called). It restates existing findings only."
+  },
+  "finishedAt": "2026-10-09T07:48:18.984Z"
+}

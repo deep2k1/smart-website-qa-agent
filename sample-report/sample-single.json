@@ -1,0 +1,160 @@
+{
+  "id": "sample-single",
+  "status": "completed",
+  "request": {
+    "url": "http://127.0.0.1:60745/",
+    "mode": "single",
+    "maxPages": 1,
+    "concurrency": 3,
+    "timeoutMs": 5000,
+    "browserChecks": false
+  },
+  "startedAt": "2026-10-09T07:48:18.989Z",
+  "progress": {
+    "phase": "done",
+    "pagesDiscovered": 1,
+    "pagesScanned": 1,
+    "linksChecked": 7,
+    "linksTotal": 7
+  },
+  "pages": [
+    {
+      "url": "http://127.0.0.1:60745/",
+      "source": "start",
+      "linkCount": 5,
+      "imageCount": 3,
+      "ctas": [
+        {
+          "text": "Get started",
+          "href": "http://127.0.0.1:60745/signup",
+          "kind": "link"
+        },
+        {
+          "text": "Buy now",
+          "href": null,
+          "kind": "link"
+        }
+      ],
+      "status": 200,
+      "title": "Fixture Home"
+    }
+  ],
+  "findings": [
+    {
+      "id": "F-001",
+      "category": "images",
+      "severity": "high",
+      "title": "Broken image (HTTP 404)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Image \"Missing\" → http://127.0.0.1:60745/img/missing.png → HTTP 404",
+      "recommendation": "Update the link to a working URL or remove it."
+    },
+    {
+      "id": "F-002",
+      "category": "links",
+      "severity": "high",
+      "title": "Broken link (HTTP 404)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Link \"Broken link\" → http://127.0.0.1:60745/missing-page → HTTP 404",
+      "recommendation": "Update the link to a working URL or remove it."
+    },
+    {
+      "id": "F-003",
+      "category": "cta",
+      "severity": "medium",
+      "title": "Call-to-action has no destination",
+      "evidence": "\"Buy now\" → href=\"#\"",
+      "recommendation": "Point the CTA at a real URL (e.g. signup or contact page).",
+      "url": "http://127.0.0.1:60745/"
+    },
+    {
+      "id": "F-004",
+      "category": "images",
+      "severity": "medium",
+      "title": "1 image(s) missing alt text",
+      "evidence": "<img> without alt attribute: /img/ok.png",
+      "recommendation": "Add descriptive alt text, or alt=\"\" for purely decorative images.",
+      "url": "http://127.0.0.1:60745/"
+    },
+    {
+      "id": "F-005",
+      "category": "security",
+      "severity": "medium",
+      "title": "Link target not checked (blocked by safety policy)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Link \"Internal admin\" → http://10.0.0.5/admin: Address 10.0.0.5 is private/local and is blocked.",
+      "recommendation": "Confirm the target is a public address. The scanner never contacts private/local networks."
+    },
+    {
+      "id": "F-006",
+      "category": "security",
+      "severity": "medium",
+      "title": "Link target not checked (blocked by safety policy)",
+      "url": "http://127.0.0.1:60745/",
+      "evidence": "Link \"Redirecting link\" → http://127.0.0.1:60745/redirect-private: Address 169.254.169.254 is private/local and is blocked.",
+      "recommendation": "Confirm the target is a public address. The scanner never contacts private/local networks."
+    },
+    {
+      "id": "F-007",
+      "category": "content",
+      "severity": "low",
+      "title": "Likely spelling mistake(s): definately, teh",
+      "evidence": "\"definately\" → \"definitely\"; \"teh\" → \"the\"",
+      "recommendation": "Correct the spelling and run a full proofreading pass (this check only covers a small word list).",
+      "url": "http://127.0.0.1:60745/"
+    }
+  ],
+  "counts": {
+    "total": 7,
+    "bySeverity": {
+      "critical": 0,
+      "high": 2,
+      "medium": 4,
+      "low": 1,
+      "info": 0
+    },
+    "byCategory": {
+      "links": 1,
+      "images": 2,
+      "seo": 0,
+      "headings": 0,
+      "content": 1,
+      "cta": 1,
+      "browser": 0,
+      "responsive": 0,
+      "accessibility": 0,
+      "security": 2
+    }
+  },
+  "notes": [
+    "Browser checks were disabled for this scan; console/page-error and mobile-overflow checks were not run."
+  ],
+  "ai": {
+    "provider": "deterministic",
+    "summary": "Scanned 1 page(s) in single-page mode and recorded 7 finding(s): 2 high, 4 medium, 1 low. Most affected areas: images (2), security (2), links (1). Address the highest-severity items first.",
+    "priorities": [
+      {
+        "findingId": "F-001",
+        "reason": "Update the link to a working URL or remove it."
+      },
+      {
+        "findingId": "F-002",
+        "reason": "Update the link to a working URL or remove it."
+      },
+      {
+        "findingId": "F-003",
+        "reason": "Point the CTA at a real URL (e.g. signup or contact page)."
+      },
+      {
+        "findingId": "F-004",
+        "reason": "Add descriptive alt text, or alt=\"\" for purely decorative images."
+      },
+      {
+        "findingId": "F-005",
+        "reason": "Confirm the target is a public address. The scanner never contacts private/local networks."
+      }
+    ],
+    "disclaimer": "Generated by deterministic rules from the findings list (no AI model called). It restates existing findings only."
+  },
+  "finishedAt": "2026-10-09T07:48:19.020Z"
+}
